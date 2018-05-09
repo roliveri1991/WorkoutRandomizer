@@ -1,8 +1,8 @@
-<<template>
+<template>
     <div>
     <h2>{{ category }}</h2>
         <ul>
-            <li v-for="workout in workouts">
+            <li v-for="workout in workouts" v-bind:key="workout.name">
                 {{ workout.name }}
             </li>
         </ul>

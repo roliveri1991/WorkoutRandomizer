@@ -6,12 +6,13 @@
       <WorkoutList v-bind:workouts="backWorkouts" category="Back"/>
       <WorkoutList v-bind:workouts="shoulderWorkouts" category="Shoulders"/>
     </div>
-      <RandomButton msg="Randomize Workout"/>
+      <RandomButton :onClick="randomizeWorkout" msg="Randomize Workout"/>
+      <p/>
+      {{ randomWorkouts }}
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 import RandomButton from './components/RandomButton.vue'
 import WorkoutList from './components/WorkoutList.vue'
 
@@ -49,7 +50,7 @@ export default {
             {name: 'Yates Row'},
             {name: 'Straight Arm Pulldown'},
             {name: 'Single Arm Seated Cable Lat Row'}
-      ],
+        ],
       shoulderWorkouts: [
             {name: 'Barbell Overhead Press'},
             {name: 'Dumbbell Press'},
@@ -63,8 +64,20 @@ export default {
             {name: 'Dumbbell Shrugs'},
             {name: 'Kettlebell Snatch'},
             {name: 'Dumbbell Shoulder Complex'},
-      ]
+        ],
+      randomWorkouts: ''
     }
+  },
+  methods: {
+    randomizeWorkout() {
+      var chestWorkout = this.getRandomWorkout(this.chestWorkouts);
+      var backWorkout = this.getRandomWorkout(this.backWorkouts);
+      var shoulderWorkout = this.getRandomWorkout(this.shoulderWorkouts);
+      this.randomWorkouts = chestWorkout.name + ' | ' + backWorkout.name + ' | ' + shoulderWorkout.name;
+    },
+    getRandomWorkout(workoutList){
+      return workoutList[Math.floor(Math.random() * workoutList.length) -1]
+    }    
   }
 }
 </script>

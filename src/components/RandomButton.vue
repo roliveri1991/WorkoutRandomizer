@@ -1,5 +1,5 @@
-<<template>
-  <button>
+<template>
+  <button @click="onClick">
       {{ msg }}
   </button>
 </template>
@@ -8,7 +8,11 @@
 export default {
   name: 'RandomButton',
   props: {
-    msg: String
+    msg: String,
+    onClick: {
+      type: Function,
+      required: true
+    }
   }
 }
 </script>
