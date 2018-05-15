@@ -113,9 +113,6 @@ export default {
     getRandomWorkout(workoutList){
       var int = Math.floor(Math.random() * workoutList.length);
       var workout = workoutList[int];
-      if (!workout){
-        debugger
-      }
       return workout; 
     }    
   }
