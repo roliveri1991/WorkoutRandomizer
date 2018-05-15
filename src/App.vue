@@ -5,6 +5,8 @@
       <WorkoutList v-bind:workouts="chestWorkouts" category="Chest"/>
       <WorkoutList v-bind:workouts="backWorkouts" category="Back"/>
       <WorkoutList v-bind:workouts="shoulderWorkouts" category="Shoulders"/>
+      <WorkoutList v-bind:workouts="legWorkouts" category="Legs"/>
+      <WorkoutList v-bind:workouts="accessoryWorkouts" category="Accessory"/>
     </div>
       <RandomButton :onClick="randomizeWorkout" msg="Randomize Workout"/>
       <p/>
@@ -65,6 +67,37 @@ export default {
             {name: 'Kettlebell Snatch'},
             {name: 'Dumbbell Shoulder Complex'},
         ],
+        legWorkouts: [
+          {name: 'Barbell Back Squat'},
+          {name: 'Barbell Front Squat'},
+          {name: 'Goblet Squat - Dumbbell'},
+          {name: 'Goblet Squat - Kettlebell'},
+          {name: 'Barbell Lunge'},
+          {name: 'Stiff Leg Barbell Deadlift'},
+          {name: 'Single Leg Kettlebell Deadlift'},
+          {name: 'Kettlebell Pistol Squat'},
+          {name: 'Power Cleans'},
+          {name: 'Goblet Lunge - Dumbbell'},
+          {name: 'Goblet Lunge - Kettlebell'},
+          {name: 'Kettlebell Lunge'},
+          {name: 'Box Squats'},
+          {name: 'Dumbbell Crossover Step Up'},
+          {name: 'Kettlebell Overhead Squat'},
+          {name: 'Barbell Overhead Squat'}
+        ],
+        accessoryWorkouts: [
+          {name: 'Kettlebell Turkish Getups'},
+          {name: 'Medice Ball Crunches'},
+          {name: 'Planks'},
+          {name: 'EZ Bar Curl'},
+          {name: 'Dumbbell Curl'},
+          {name: 'Single Arm High Cable Curl'},
+          {name: 'Cable Curl'},
+          {name: 'Rope Push Down'},
+          {name: 'Dumbbell Tricep Extension'},
+          {name: 'Skull Crushers'},
+          {name: 'Dips'}
+        ],
       randomWorkouts: ''
     }
   },
@@ -73,10 +106,17 @@ export default {
       var chestWorkout = this.getRandomWorkout(this.chestWorkouts);
       var backWorkout = this.getRandomWorkout(this.backWorkouts);
       var shoulderWorkout = this.getRandomWorkout(this.shoulderWorkouts);
-      this.randomWorkouts = chestWorkout.name + ' | ' + backWorkout.name + ' | ' + shoulderWorkout.name;
+      var legWorkout = this.getRandomWorkout(this.legWorkouts);
+      var accessoryWorkout = this.getRandomWorkout(this.accessoryWorkouts);
+      this.randomWorkouts = chestWorkout.name + ' | ' + backWorkout.name + ' | ' + shoulderWorkout.name + ' | ' + legWorkout.name + ' | ' + accessoryWorkout.name;
     },
     getRandomWorkout(workoutList){
-      return workoutList[Math.floor(Math.random() * workoutList.length) -1]
+      var int = Math.floor(Math.random() * workoutList.length);
+      var workout = workoutList[int];
+      if (!workout){
+        debugger
+      }
+      return workout; 
     }    
   }
 }
